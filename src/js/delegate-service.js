@@ -13,6 +13,7 @@ function delegateService(methodNames) {
 
     var instances = this._instances = [];
     this._registerInstance = function(instance, handle) {
+
       instance.$$delegateHandle = handle;
       instances.push(instance);
 

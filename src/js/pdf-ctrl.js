@@ -9,14 +9,15 @@ angular.module('pdf')
   function($scope, $element, $attrs, pdfDelegate, $log, $q) {
 
     // Register the instance!
-    var deregisterInstance = pdfDelegate._registerInstance(this, $attrs.delegateHandle);
+
+    var deregisterInstance = pdfDelegate._registerInstance(this, $scope.delegateHandle);
     // De-Register on destory!
     $scope.$on('$destroy', deregisterInstance);
 
     var self = this;
 
-    var url = $scope.$eval($attrs.url);
-    var headers = $scope.$eval($attrs.headers);
+    var url = $scope.$parent.$eval($attrs.url);
+    var headers = $scope.$parent.$eval($attrs.headers);
     var pdfDoc;
     $scope.pageCount = 0;
     var currentPage = 1;

@@ -8,12 +8,12 @@ angular.module('pdf')
       restrict: 'E',
       template: '<pdf-viewer-toolbar ng-if="showToolbar" delegate-handle="{{id}}" page-count="pageCount"></pdf-viewer-toolbar><canvas></canvas>',
       scope: {
-        delegateHandle: '<'
+        delegateHandle: '@',
       },
       controller: 'PdfCtrl',
       link: function(scope, element, attrs) {
-        scope.id = scope.delegateHandle;
-        scope.showToolbar = scope.$eval(attrs.showToolbar) || false;
+        scope.id = scope.delegateHandle || attrs.delegateHandle;
+        scope.showToolbar = scope.$parent.$eval(attrs.showToolbar) || false;
       }
     };
 }]);
